@@ -1,0 +1,59 @@
+OPEN DATA "C:\Users\Miles\Desktop\RMHI Docs\Paper sources\FEDFUNDS.xls"
+CALENDAR(M) 1980:1
+DATA(FORMAT=XLS,ORG=COLUMNS,SHEET="Sheet1") 1980:01 2018:02 FEDFUNDS
+GRAPH(STYLE=LINE) 1
+# FEDFUNDS
+@bjident fedfunds
+BOXJENK(CONST,AR=3,DEFINE=AR3MODEL) FEDFUNDS / AR3RESID
+
+Box-Jenkins - Estimation by LS Gauss-Newton
+Convergence in     3 Iterations. Final criterion was  0.0000000 <=  0.0000100
+
+Dependent Variable FEDFUNDS
+Monthly Data From 1980:04 To 2018:02
+Usable Observations                       455
+Degrees of Freedom                        451
+Centered R^2                        0.9864524
+R-Bar^2                             0.9863623
+Uncentered R^2                      0.9943080
+Mean of Dependent Variable       4.7280219780
+Std Error of Dependent Variable  4.0290357008
+Standard Error of Estimate       0.4705129365
+Sum of Squared Residuals         99.843472980
+Regression F(3,451)                10946.3628
+Significance Level of F             0.0000000
+Log Likelihood                      -300.5692
+Durbin-Watson Statistic                1.9660
+Q(36-3)                              123.1999
+Significance Level of Q             0.0000000
+
+    Variable                        Coeff      Std Error      T-Stat      Signif
+************************************************************************************
+1.  CONSTANT                      3.123003064  1.384319550      2.25598  0.02454989
+2.  AR{1}                         1.484724479  0.043147730     34.41026  0.00000000
+3.  AR{2}                        -0.779930099  0.071552259    -10.90015  0.00000000
+4.  AR{3}                         0.277961494  0.042921316      6.47607  0.00000000
+
+@bjident AR3RESID
+BOXJENK(CONST,AR=3,MA=2,DEFINE=AR3MA2MODEL) FEDFUNDS / AR3MA2RESID
+
+UFORECAST(TO=2019:06,EQUATION=AR3MODEL,PRINT) FUNDRATECAST
+
+ Entry    FEDFUNDS
+ 2018:03 1.423810723
+ 2018:04 1.452245060
+ 2018:05 1.494269733
+ 2018:06 1.535547234
+ 2018:07 1.571960292
+ 2018:08 1.605511327
+ 2018:09 1.638399285
+ 2018:10 1.671182808
+ 2018:11 1.703532894
+ 2018:12 1.735136589
+ 2019:01 1.765941119
+ 2019:02 1.796020764
+ 2019:03 1.825439980
+ 2019:04 1.854221862
+ 2019:05 1.882371078
+ 2019:06 1.909894462
+
